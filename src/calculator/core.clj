@@ -191,7 +191,9 @@
   (if (or (= (type list) java.lang.Float) (= (type list) java.lang.Double))
     list
     (cond (= (first list) :add) (+ (evaluate (nth list 1)) (evaluate (nth list 2)))
-          (= (first list) :sub) (- (evaluate (nth list 1)) (evaluate (nth list 2)))
+          (= (first list) :sub) (if (< (count list) 3)
+                                  (- 0 (evaluate (nth list 1)))
+                                  (- (evaluate (nth list 1)) (evaluate (nth list 2))))
           (= (first list) :mult) (* (evaluate (nth list 1)) (evaluate (nth list 2)))
           (= (first list) :div) (/ (evaluate (nth list 1)) (evaluate (nth list 2)))
           (= (first list) :mod) (mod (evaluate (nth list 1)) (evaluate (nth list 2)))
