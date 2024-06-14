@@ -40,6 +40,11 @@
               (= % "arcsin") :arcsin
               (= % "arccos") :arccos
               (= % "arctan") :arctan
+              (= % "exp") :exp
+              (= % "abs") :abs
+              (= % "floor") :floor
+              (= % "ceil") :ceil
+              (= % "round") :round
               (= % "pi") 3.1415926535
               (= % "e") 2.7182818284
               :else %)
@@ -58,7 +63,12 @@
    (= k :tan)
    (= k :arcsin)
    (= k :arccos)
-   (= k :arctan)))
+   (= k :arctan)
+   (= k :exp)
+   (= k :abs)
+   (= k :floor)
+   (= k :ceil)
+   (= k :round)))
 
 (defn type-map
   "Returns a list of types for each element of the list (only types used by this program are supported)
@@ -208,6 +218,11 @@
           (= (first list) :arcsin) (math/asin (evaluate (nth list 1)))
           (= (first list) :arccos) (math/acos (evaluate (nth list 1)))
           (= (first list) :arctan) (math/atan (evaluate (nth list 1)))
+          (= (first list) :exp) (math/exp (evaluate (nth list 1)))
+          (= (first list) :abs) (abs (evaluate (nth list 1)))
+          (= (first list) :floor) (math/floor (evaluate (nth list 1)))
+          (= (first list) :ceil) (math/ceil (evaluate (nth list 1)))
+          (= (first list) :round) (math/round (evaluate (nth list 1)))
           :else (first list))))
 
 (defn calculate
@@ -225,6 +240,24 @@
       (as-prefix)
       (evaluate)))
 
+(defn calculator-repl
+  "Read-evaluate-print loop for the calculator"
+  []
+  (println "Welcome to CLICalculator. Type a mathematical expression and press enter to evaluate it. Type \"quit\" to exit.")
+  (loop []
+    (print (str \u001b "[35m" "> " \u001b "[0m"))
+    (flush)
+    (let [input (read-line)
+          result (calculate input)]
+      (println result)
+      (when-not (= input "quit")
+        (recur)))))
+
 (defn -main
   [& args]
-  (println (calculate (first args))))
+  (if (= (count args) 0)
+    (calculator-repl)
+    (-> args
+        (first)
+        (calculate)
+        (println))))
