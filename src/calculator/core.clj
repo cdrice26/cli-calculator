@@ -210,16 +210,21 @@
           (= (first list) :arctan) (math/atan (evaluate (nth list 1)))
           :else (first list))))
 
+(defn calculate
+  "Calculate a mathematical expression"
+  [str]
+  (-> str
+      (tokenize)
+      (numberize)
+      (keywordize)
+      (add-parentheses-to-mult)
+      (nest)
+      (vec)
+      (unchain)
+      (vec)
+      (as-prefix)
+      (evaluate)))
+
 (defn -main
   [& args]
-  (println (-> (first args)
-               (tokenize)
-               (numberize)
-               (keywordize)
-               (add-parentheses-to-mult)
-               (nest)
-               (vec)
-               (unchain)
-               (vec)
-               (as-prefix)
-               (evaluate))))
+  (println (calculate (first args))))
