@@ -312,3 +312,4 @@ clj꞉calculator.core-test꞉> 
 
 ; 42 tests finished, all passing 👍, ns: 1, vars: 14
 clj꞉calculator.core-test꞉> 
+; nREPL Connection was closed
