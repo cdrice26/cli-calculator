@@ -80,8 +80,8 @@
               (or (= (type %) java.lang.Float) (= (type %) java.lang.Double)) :number)
        list))
 
-(defn add-parentheses-to-mult
-  "Add parentheses to implicit multiplication statements"
+(defn add-keyword-to-implicit-mult
+  "Add the mult keyword to implicit multiplication statements"
   [list]
   (flatten [(map (fn [l nl] (cond
                               (and (or (number? l) (= l ")")) (or (= nl "(") (is-unary-function nl))) [l :mult]
@@ -232,7 +232,7 @@
       (tokenize)
       (numberize)
       (keywordize)
-      (add-parentheses-to-mult)
+      (add-keyword-to-implicit-mult)
       (nest)
       (vec)
       (unchain)
