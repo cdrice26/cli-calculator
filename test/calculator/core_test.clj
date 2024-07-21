@@ -70,4 +70,5 @@
   (t/is (= 20.0 (c/evaluate [:add [:sqrt 4.0] [:add 3.0 [:mult 3.0 5.0]]]))))
 
 (t/deftest test-calculate
-  (t/is (= 20.0 (c/calculate "sqrt(4) + 3 + 3 * 5"))))
+  (t/is (= 20.0 (c/calculate "sqrt(4) + 3 + 3 * 5")))
+  (t/is (= 400.0 (c/calculate "100 * sqrt(16)"))))
