@@ -1,36 +1,39 @@
-# calculator
+# CLI Calculator
 
-FIXME: description
+This is a command-line utility that acts as a calculator. You can enter standard math expressions and this program will evaluate them and print their result to the console. You can also pass in the expression as a command-line argument.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Clone the repo, and run the following in the root of it:
+```zsh
+lein uberjar
+```
+This will build a jar in the ```target/uberjar``` that you can then run with:
+```zsh
+java -jar calculator-0.1.0-SNAPSHOT-standalone.jar
+```
 
 ## Usage
+To run in REPL mode, run
+```zsh
+java -jar calculator-0.1.0-SNAPSHOT-standalone.jar
+```
+This will continuously take input from ```stdin``` until quit with ```^C``` or by typing ```quit```, and evaluate each expression and print the result on the next line.
 
-FIXME: explanation
+You can also pass in an expression as a command-line argument, e.g.
+```zsh
+java -jar calculator-0.1.0-SHAPSHOT-standalone.jar "3+(4abs(5))"
+``` 
 
-    $ java -jar calculator-0.1.0-standalone.jar [args]
+The following operations are supported: +, -, *, /, % (mod), and ^ (power)
 
-## Options
+The following functions are supported: sqrt, cbrt, log, ln, sin, cos, tan, arcsin, arccos, arctan, exp, abs, floor, ceil, round
 
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+The following constants are supported: pi, e
 
 ## License
 
-Copyright © 2024 FIXME
+Copyright © 2024 Caleb Rice
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
