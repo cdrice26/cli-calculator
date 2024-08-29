@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in: (cd /Users/caleb/Development/Command-Line Calculator/calculator; lein update-in :dependencies conj '[nrepl,"1.1.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.47.1"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless)
-; Using host:port 127.0.0.1:60439 ...
+; Using host:port 127.0.0.1:60312 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -48,268 +48,74 @@ about why stdout printed to this file is prepended with `;` to be line comments.
 clj꞉calculator.core꞉> 
 ; Jack-in done.
 clj꞉calculator.core꞉> 
-#'calculator.core-test/test-tokenize
+#'calculator.core/-main
+clj꞉calculator.core꞉> 
+; Running tests for the following namespaces:
+;   calculator.core-test
+
+; No tests found. 😱, ns: 0, vars: 0
 clj꞉calculator.core-test꞉> 
 ; Running tests for the following namespaces:
 ;   calculator.core-test
 
-; ; FAIL in calculator.core-test/test-tokenize (form-init4463544464661717067.clj:6):
-; ; expected:
-; (=
-;  ["6" "/" "4" "cos" "abs" "(" "-" "3" ")"]
-;  (c/tokenize "6/4cos(abs(-3))"))
-; 
-; ; actual:
-; (not
-;  (=
-;   ["6" "/" "4" "cos" "abs" "(" "-" "3" ")"]
-;   ("6" "/" "4" "cos" "(" "abs" "(" "-" "3" ")" ")")))
-
-; 2 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-tokenize
+; No tests found. 😱, ns: 0, vars: 0
 clj꞉calculator.core-test꞉> 
 ; Running tests for the following namespaces:
 ;   calculator.core-test
 
-; 2 tests finished, all passing 👍, ns: 1, vars: 1
+; No tests found. 😱, ns: 0, vars: 0
 clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-parse-float
+
 clj꞉calculator.core-test꞉> 
 ; Running tests for the following namespaces:
 ;   calculator.core-test
 
-; 8 tests finished, all passing 👍, ns: 1, vars: 2
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-numberize
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-numberize (form-init4463544464661717067.clj:18):
-; ; expected:
-; [6 "/" 4 "cos" "(" "abs" "(" "-" 3 ")" ")"]
-; 
-; ; actual:
-; (6.0 "/" 4.0 "cos" "(" "abs" "(" "-" 3.0 ")" ")")
-
-; 9 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 3
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-numberize
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 9 tests finished, all passing 👍, ns: 1, vars: 3
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-keywordize
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 11 tests finished, all passing 👍, ns: 1, vars: 4
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-is-unary-function
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 28 tests finished, all passing 👍, ns: 1, vars: 5
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-is-unary-function
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 31 tests finished, all passing 👍, ns: 1, vars: 5
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-type-map
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-type-map (form-init4463544464661717067.clj:47):
-; ; expected:
-; [:list :vector :add :number]
-; 
-; ; actual:
-; (nil :vector :add nil)
-
-; 32 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 6
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-type-map
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-type-map (form-init4463544464661717067.clj:47):
-; ; expected:
-; [:vector :add :number]
-; 
-; ; actual:
-; (:vector :add nil)
-
-; 32 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 6
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-type-map
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 32 tests finished, all passing 👍, ns: 1, vars: 6
-clj꞉calculator.core-test꞉> 
-; Syntax error compiling at (test/calculator/core_test.clj:50:26).
-; No such var: c/add-keyword-to-implicit-mult
+; No tests found. 😱, ns: 0, vars: 0
 clj꞉calculator.core-test꞉> 
 #'calculator.core/-main
 clj꞉calculator.core꞉> 
-#'calculator.core-test/test-add-keyword-to-implicit-mult
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 33 tests finished, all passing 👍, ns: 1, vars: 7
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-add-keyword-to-implicit-mult
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-add-keyword-to-implicit-mult (form-init4463544464661717067.clj:51):
-; ; clojure.lang.LazySeq@8bb
-; ; expected:
-; ")"
-; 
-; ; actual:
-; (not (= ")" :mult 3))
-
-; 34 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 7
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-add-keyword-to-implicit-mult
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-add-keyword-to-implicit-mult (form-init4463544464661717067.clj:51):
-; ; expected:
-; [")" :mult 3]
-; 
-; ; actual:
-; (")" 3)
-
-; 34 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 7
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-add-keyword-to-implicit-mult
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 35 tests finished, all passing 👍, ns: 1, vars: 7
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-indexes-of
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 36 tests finished, all passing 👍, ns: 1, vars: 8
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-one-less
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ERROR in calculator.core-test/test-one-less (Numbers.java:58):
-; error: java.lang.ClassCastException: class clojure.lang.Keyword cannot be cast to class java.lang.Number (clojure.lang.Keyword is in unnamed module of loader 'app'; java.lang.Number is in module java.base of loader 'bootstrap') (Numbers.java:58)
-; expected:
-(= :add (c/one-less [:add :sub :mult :div :add 5] 5))
-
-; 37 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 9
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-one-less
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 37 tests finished, all passing 👍, ns: 1, vars: 9
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-unchain
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ; FAIL in calculator.core-test/test-unchain (form-init4463544464661717067.clj:61):
-; ; expected:
-; [3 :add [5 :abs 3]]
-; 
-; ; actual:
-; [[3 :add 5] [:abs 3]]
-
-; 38 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 10
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-unchain
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 38 tests finished, all passing 👍, ns: 1, vars: 10
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-unchain
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 39 tests finished, all passing 👍, ns: 1, vars: 11
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-as-prefix
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 40 tests finished, all passing 👍, ns: 1, vars: 12
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-evaluate
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ERROR in calculator.core-test/test-evaluate (RT.java:70):
-; error: java.lang.IllegalArgumentException: Don't know how to create ISeq from: java.lang.Long (RT.java:70)
-; expected:
-(= 21.0 (c/evaluate [:add [:abs 3] [:add 3 [:mult 3 5]]]))
-
-; 41 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 13
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-evaluate
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; ERROR in calculator.core-test/test-evaluate (RT.java:70):
-; error: java.lang.IllegalArgumentException: Don't know how to create ISeq from: java.lang.Long (RT.java:70)
-; expected:
-(= 21.0 (c/evaluate [:add 3 [:mult 3 5]]))
-
-; 41 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 13
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-evaluate
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 41 tests finished, all passing 👍, ns: 1, vars: 13
-clj꞉calculator.core-test꞉> 
-#'calculator.core-test/test-evaluate
-clj꞉calculator.core-test꞉> 
-; Running tests for the following namespaces:
-;   calculator.core-test
-
-; 41 tests finished, all passing 👍, ns: 1, vars: 13
-clj꞉calculator.core-test꞉> 
 #'calculator.core-test/test-calculate
 clj꞉calculator.core-test꞉> 
 ; Running tests for the following namespaces:
 ;   calculator.core-test
 
-; 42 tests finished, all passing 👍, ns: 1, vars: 14
+; 43 tests finished, all passing 👍, ns: 1, vars: 14
 clj꞉calculator.core-test꞉> 
-; nREPL Connection was closed
+#'calculator.core/-main
+clj꞉calculator.core꞉> 
+; Running tests for the following namespaces:
+;   calculator.core-test
+
+; ERROR in calculator.core-test/test-calculate (core.clj:73):
+; error: java.lang.ClassCastException: class clojure.lang.LazySeq cannot be cast to class clojure.lang.IPersistentVector (clojure.lang.LazySeq and clojure.lang.IPersistentVector are in unnamed module of loader 'app') (core.clj:73)
+; expected:
+(= 20.0 (c/calculate "sqrt(4) + 3 + 3 * 5"))
+
+; ERROR in calculator.core-test/test-calculate (core.clj:74):
+; error: java.lang.ClassCastException: class clojure.lang.LazySeq cannot be cast to class clojure.lang.IPersistentVector (clojure.lang.LazySeq and clojure.lang.IPersistentVector are in unnamed module of loader 'app') (core.clj:74)
+; expected:
+(= 400.0 (c/calculate "100 * sqrt(16)"))
+
+; ERROR in calculator.core-test/test-unchain (core.clj:64):
+; error: java.lang.ClassCastException: class clojure.lang.LazySeq cannot be cast to class clojure.lang.IPersistentVector (clojure.lang.LazySeq and clojure.lang.IPersistentVector are in unnamed module of loader 'app') (core.clj:64)
+; expected:
+(= [3 :add [5 :mult [:abs 3]]] (c/unchain [3 :add 5 :mult :abs 3]))
+
+; 43 tests finished, problems found. 😭 errors: 3, failures: 0, ns: 1, vars: 14
+clj꞉calculator.core-test꞉> 
+#'calculator.core/-main
+clj꞉calculator.core꞉> 
+; Running tests for the following namespaces:
+;   calculator.core-test
+
+; 43 tests finished, all passing 👍, ns: 1, vars: 14
+clj꞉calculator.core-test꞉> 
+#'calculator.core/-main
+clj꞉calculator.core꞉> 
+#'calculator.core/-main
+clj꞉calculator.core꞉> 
+; Running tests for the following namespaces:
+;   calculator.core-test
+
+; 43 tests finished, all passing 👍, ns: 1, vars: 14
+clj꞉calculator.core-test꞉> 

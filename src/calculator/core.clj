@@ -117,6 +117,16 @@
              [(subvec vec-list (+ 1 first-opening) first-closing)]
              (subvec vec-list (+ 1 first-closing)))))))
 
+(defn unchain-one
+  "Unchains a single term"
+  [types vec-list keywords]
+  (let [i (first (keep-indexed #(if (some #{%2} keywords) %1 nil) types))
+        kw (first (keep #(if (some #{%} keywords) % nil) types))]
+    (concat
+     (subvec vec-list 0 (- i 1))
+     [[(nth vec-list (- i 1)) kw (nth vec-list (+ i 1))]]
+     (subvec vec-list (+ 2 i)))))
+
 (defn unchain
   "Makes sure there is no more than one operator per vector"
   [list]
@@ -128,51 +138,33 @@
     (if (> (count vec-list) 3)
       ; Follow the order of operations: first, parentheses (which are vectors in this case)
       ; Use map on the list to unchain all vectors in the list, then unchain the finished list in case there are still too many terms
-      (cond (some #(= :vector %) types) (unchain (map-indexed #(if (= (nth types %) :vector)
-                                                                 (unchain %2)
-                                                                 %2) vec-list))
-            ; Unchain a unary function call
-            ; i is the index of the first keyword representing a unary function
-            (some #(is-unary-function %) types) (let [i (first (keep-indexed #(if (is-unary-function %2) %1 nil) types))]
-                                                  (-> (concat
-                                                       ; List up to the unary function
-                                                       (subvec vec-list 0 i)
-                                                       ; The unary function and its argument
-                                                       [(subvec vec-list i (+ 2 i))]
-                                                       ; List after the unary function
-                                                       (subvec vec-list (+ 2 i)))
-                                                      ; Unchain the next operator
-                                                      (unchain)
-                                                      ; Convert to vector
-                                                      (vec)))
-            ; Unchain an exponentiation
-            (some #(= % :pow) types) (let [i (first (indexes-of :pow types))]
-                                       (-> (concat
-                                            (subvec vec-list 0 (- i 1))
-                                            [[(nth vec-list (- i 1)) :pow (nth vec-list (+ i 1))]]
-                                            (subvec vec-list (+ 2 i)))
-                                           (unchain)
-                                           (vec)))
-            ; Unchain multiplication, division, and modulo
-            ; kw is either :mult :div or :mod depending on the operation
-            (some #(or (= % :mult) (= % :div) (= % :mod)) types) (let [i (first (keep-indexed #(if (or (= %2 :mult) (= %2 :div) (= %2 :mod)) %1 nil) types))
-                                                                       kw (first (keep #(if (or (= % :mult) (= % :div) (= % :mod)) % nil) types))]
-                                                                   (-> (concat
-                                                                        (subvec vec-list 0 (- i 1))
-                                                                        [[(nth vec-list (- i 1)) kw (nth vec-list (+ i 1))]]
-                                                                        (subvec vec-list (+ 2 i)))
-                                                                       (unchain)
-                                                                       (vec)))
-            ; Unchain addition and subtraction
-            (some #(or (= % :add) (= % :sub)) types) (let [i (first (keep-indexed #(if (or (= %2 :add) (= %2 :sub)) %1 nil) types))
-                                                           kw (first (keep #(if (or (= % :add) (= % :sub)) % nil) types))]
-                                                       (-> (concat
-                                                            (subvec vec-list 0 (- i 1))
-                                                            [[(nth vec-list (- i 1)) kw (nth vec-list (+ i 1))]]
-                                                            (subvec vec-list (+ 2 i)))
-                                                           (unchain)
-                                                           (vec)))
-            :else vec-list)
+      (-> (cond (some #(= :vector %) types) (unchain (map-indexed #(if (= (nth types %) :vector)
+                                                                     (unchain %2)
+                                                                     %2) vec-list))
+                      ; Unchain a unary function call
+                      ; i is the index of the first keyword representing a unary function
+                (some #(is-unary-function %) types) (let [i (first (keep-indexed #(if (is-unary-function %2) %1 nil) types))]
+                                                      (-> (concat
+                                                                 ; List up to the unary function
+                                                           (subvec vec-list 0 i)
+                                                                 ; The unary function and its argument
+                                                           [(subvec vec-list i (+ 2 i))]
+                                                                 ; List after the unary function
+                                                           (subvec vec-list (+ 2 i)))
+                                                                ; Unchain the next operator
+                                                          (unchain)
+                                                                ; Convert to vector
+                                                          (vec)))
+                      ; Unchain an exponentiation
+                (some #(= % :pow) types) (unchain-one types vec-list [:pow])
+                      ; Unchain multiplication, division, and modulo
+                      ; kw is either :mult :div or :mod depending on the operation
+                (some #(or (= % :mult) (= % :div) (= % :mod)) types) (unchain-one types vec-list [:mult :div :mod])
+                      ; Unchain addition and subtraction
+                (some #(or (= % :add) (= % :sub)) types) (unchain-one types vec-list [:add :sub])
+                :else vec-list)
+          (unchain)
+          (vec))
       ; If the list is shorter than three terms, all we need to do is unchain any internal vectors
       (map-indexed #(if (= (nth types %) :vector)
                       (-> %2 (unchain) (vec))
