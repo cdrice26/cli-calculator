@@ -8,7 +8,7 @@ Clone the repo, and run the following in its root directory:
 ```bash
 lein uberjar
 ```
-This will build a jar in the ```target/uberjar```. Copy or move it to the desired directory, and then run the following in that directory:
+This will build a jar in the ```target/uberjar``` directory. Copy or move it to the desired directory, and then run the following in that directory:
 ```bash
 java -jar calculator-0.1.0-SNAPSHOT-standalone.jar
 ```
