@@ -13,7 +13,7 @@ This will build a jar in the ```target/uberjar``` directory. Copy or move it to 
 java -jar calculator-0.1.0-SNAPSHOT-standalone.jar
 ```
 
-If you wish, you can also use ```jpackage``` to create a standalone executable.
+If you wish, you can also use ```jpackage``` to create a standalone executable. Just note that at least on macOS, it builds a .app file and you will need to extract the executable from it in order to use it.
 
 ## Usage
 To run in REPL mode, run
