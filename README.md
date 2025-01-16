@@ -8,12 +8,12 @@ Clone the repo, and run the following in its root directory:
 ```bash
 lein uberjar
 ```
-This will build a jar in the ```target/uberjar```. Copy or move it to the desired directory, and then run the following in that directory:
+This will build a jar in the ```target/uberjar``` directory. Copy or move it to the desired directory, and then run the following in that directory:
 ```bash
 java -jar calculator-0.1.0-SNAPSHOT-standalone.jar
 ```
 
-If you wish, you can also use ```jpackage``` to create a standalone executable.
+If you wish, you can also use ```jpackage``` to create a standalone executable. Just note that at least on macOS, it builds a .app file and you will need to extract the executable from it in order to use it.
 
 ## Usage
 To run in REPL mode, run
@@ -32,18 +32,3 @@ The following operations are supported: +, -, *, /, % (mod), and ^ (power)
 The following functions are supported: sqrt, cbrt, log, ln, sin, cos, tan, arcsin, arccos, arctan, exp, abs, floor, ceil, round
 
 The following constants are supported: pi, e
-
-## License
-
-Copyright © 2024 Caleb Rice
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
